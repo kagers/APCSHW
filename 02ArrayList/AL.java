@@ -11,7 +11,7 @@ public class AL{
     public static void main(String[]args){
 	    ArrayList<Integer> x = new ArrayList<Integer>(){{
 		    add(1);
-	    	add(2);
+		    add(2);
 		    add(2);
 		    add(3);
 		    add(4);
@@ -19,7 +19,7 @@ public class AL{
 		    add(4);
 		    add(4);
 		    add(3);
-	    	add(3);
+		    add(3);
 	    }};
 	    System.out.println(x);
 	    collapseDuplicates(x);
