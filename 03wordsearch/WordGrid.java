@@ -7,6 +7,7 @@ public class WordGrid{
      *@param col is the starting width of the WordGrid
      */
     public WordGrid(int rows,int cols){
+	char[][]data = new char[rows][cols];
     }
 
     /**Set all values in the WordGrid to spaces ' '*/
@@ -32,6 +33,6 @@ public class WordGrid{
      */
     public boolean addWordHorizontal(String word,int row, int col){
     }
-
+    
     //vertical + diagonal should be implemented as well.
 }
