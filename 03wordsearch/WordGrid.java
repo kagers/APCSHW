@@ -7,19 +7,33 @@ public class WordGrid{
      *@param col is the starting width of the WordGrid
      */
     public WordGrid(int rows,int cols){
-	char[][]data = new char[rows][cols];
+	data = new char[rows][cols];
+	clear();
     }
 
     /**Set all values in the WordGrid to spaces ' '*/
-    //private void clear(){
-    //}
+    private void clear(){
+	for (int i=0;i<data.length;i++){
+		for (int j=0;j<data[i].length;j++){
+			data[i][j]='_';
+		}
+	}
+    }
 
     /**The proper formatting for a WordGrid is created in the toString.
      *@return a String with each character separated by spaces, and each row
      *separated by newlines.
      */
-    //public String toString(){
-    //}
+    public String toString(){
+	String ret="";
+	for (int i=0;i<data.length;i++){
+                for (int j=0;j<data[i].length;j++){
+                        ret+=data[i][j]+" ";
+                }
+		ret+="\n";
+        }
+	return ret;
+    }
 
     /**Attempts to add a given word to the specified position of the WordGrid.
      *The word is added from left to right, must fit on the WordGrid, and must
