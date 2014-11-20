@@ -45,8 +45,8 @@ public class WordGrid{
      *@return true when the word is added successfully. When the word doesn't fit,
      *or there are overlapping letters that do not match, then false is returned.
      */
-    public boolean addWordHorizontal(String word,int row, int col){
-	if (word.length()>data[0].length || row>=data.length || col>=data[0].length){
+    /*public boolean addWordHorizontal(String word,int row, int col){
+	/*if (word.length()>data[0].length || row>=data.length || col>=data[0].length){
 		return false;
 	}
 	int x=col;
@@ -61,6 +61,7 @@ public class WordGrid{
                 col++;
         }
 	return true;
+	addWord(word,row,col,0,1);
     }
 
     /**Attempts to add a given word to the specified position of the WordGrid.
@@ -73,7 +74,7 @@ public class WordGrid{
      *@return true when the word is added successfully. When the word doesn't fit,
      *or there are overlapping letters that do not match, then false is returned.
      */
-    public boolean addWordVertical(String word,int row, int col){
+    /*public boolean addWordVertical(String word,int row, int col){
         if (word.length()>data.length || row>=data.length || col>=data[0].length){
                 return false;
         }
@@ -89,6 +90,7 @@ public class WordGrid{
                 row++;
         }
         return true;
+	addWord(word,row,col,1,0);
     }
 
 
@@ -103,7 +105,7 @@ public class WordGrid{
      *@return true when the word is added successfully. When the word doesn't fit,
      *or there are overlapping letters that do not match, then false is returned.
      */
-    public boolean addWordDiagonal(String word,int row, int col){
+    /*public boolean addWordDiagonal(String word,int row, int col){
         if (word.length()>(Math.min(data[0].length,data.length)) || row>=data.length || col>=data[0].length){
                 return false;
         }
@@ -122,7 +124,54 @@ public class WordGrid{
 		row++;
         }
         return true;
+    }*/
+    public static int directionV(int v,int r){
+	if (v==-1){
+	    return r-1;
+	}
+	if (v==1){
+	    return r+1;
+	}
+	else {
+	    return r;
+	}
     }
+    public static int directionH(int h, int c){
+	if (h==-1){
+	    return c-1;
+	}
+	if (h==1){
+	    return c+1;
+	}
+	else {
+	    return c;
+	}
+    }
+    public boolean addWord(String word,int row, int col,int v, int h){
+        if (word.length()>(Math.min(data[0].length,data.length)) || row>=data.length || col>=data[0].length){
+	        return false;
+        }
+        int x=col;
+	int y=row;
+        for (int i=0;i<word.length();i++){
+                if (x>=data[0].length || y>=data.length || (data[y][x]!=' ' && word.charAt(i)!=data[y][x])){
+                        return false;
+                }
+		x=directionH(h,x);
+		y=directionV(v,y);
+		System.out.println(x);
+		System.out.println(y);
+	}
+        for (int i=0;i<word.length();i++){
+                data[row][col]=word.charAt(i);
+                col=directionH(h,col);
+		row=directionV(v,row);
+        }
+        return true;
+    }
+    
+
+
 
 
 }
