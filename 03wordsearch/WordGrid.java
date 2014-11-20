@@ -15,7 +15,7 @@ public class WordGrid{
     private void clear(){
 	for (int i=0;i<data.length;i++){
 		for (int j=0;j<data[i].length;j++){
-			data[i][j]='_';
+			data[i][j]=' ';
 		}
 	}
     }
@@ -51,7 +51,7 @@ public class WordGrid{
 	}
 	int x=col;
 	for (int i=0;i<word.length();i++){
-		if (x>=data[0].length || (data[row][x]!='_' && word.charAt(i)!=data[row][x])){
+		if (x>=data[0].length || (data[row][x]!=' ' && word.charAt(i)!=data[row][x])){
 			return false;
 		}
 		x++;
@@ -79,7 +79,7 @@ public class WordGrid{
         }
         int y=row;
         for (int i=0;i<word.length();i++){
-                if (y>=data.length || (data[y][col]!='_' && word.charAt(i)!=data[y][col])){
+                if (y>=data.length || (data[y][col]!=' ' && word.charAt(i)!=data[y][col])){
                         return false;
                 }
                 y++;
@@ -110,7 +110,7 @@ public class WordGrid{
         int x=col;
 	int y=row;
         for (int i=0;i<word.length();i++){
-                if (x>=data[0].length || y>=data.length || (data[y][x]!='_' && word.charAt(i)!=data[y][x])){
+                if (x>=data[0].length || y>=data.length || (data[y][x]!=' ' && word.charAt(i)!=data[y][x])){
                         return false;
                 }
                 x++;
