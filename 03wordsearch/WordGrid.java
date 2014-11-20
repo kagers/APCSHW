@@ -11,15 +11,15 @@ public class WordGrid{
     }
 
     /**Set all values in the WordGrid to spaces ' '*/
-    private void clear(){
-    }
+    //private void clear(){
+    //}
 
     /**The proper formatting for a WordGrid is created in the toString.
      *@return a String with each character separated by spaces, and each row
      *separated by newlines.
      */
-    public String toString(){
-    }
+    //public String toString(){
+    //}
 
     /**Attempts to add a given word to the specified position of the WordGrid.
      *The word is added from left to right, must fit on the WordGrid, and must
@@ -31,8 +31,8 @@ public class WordGrid{
      *@return true when the word is added successfully. When the word doesn't fit,
      *or there are overlapping letters that do not match, then false is returned.
      */
-    public boolean addWordHorizontal(String word,int row, int col){
-    }
+    //public boolean addWordHorizontal(String word,int row, int col){
+    //}
     
     //vertical + diagonal should be implemented as well.
 }
