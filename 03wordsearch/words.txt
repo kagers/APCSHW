@@ -1,0 +1,5 @@
+hypergeometric
+binomial
+geometric
+negativebinomial
+poisson
