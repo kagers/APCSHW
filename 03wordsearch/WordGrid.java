@@ -106,13 +106,12 @@ public class WordGrid{
 	for (int i=0; i<bank.size(); i++){
 	    boolean done = false;
 	    int j = 0;
-	    int yy = 0;
-	    int xx = 0;
-	    while(j<=25 && !(done)){
-		done=addWord(bank.get(i),ayn.nextInt(data.length),ayn.nextInt(data[0].length),randD(),randD());
+	    while(j<=20 && !(done)){
+		done=addWord((bank.get(i)).toUpperCase(),ayn.nextInt(data.length),ayn.nextInt(data[0].length),randD(),randD());
 		j++;
 	    }
 	}
+	//filler();
     }
     /**Helper method*/
     public static int randD(){
@@ -126,6 +125,17 @@ public class WordGrid{
 	}
 	else{
 	    return 1;
+	}
+    }
+    /**Helper method sets all spaces in the WordGrid to random chars.*/
+    public void filler(){
+	Random ayn = new Random();
+	for (int i=0;i<data.length;i++){
+		for (int j=0;j<data[i].length;j++){
+		    if (data[i][j]==' '){
+			data[i][j]=(char)(ayn.nextInt((90-65)+1)+65);
+		    }
+		}
 	}
     }
 }
