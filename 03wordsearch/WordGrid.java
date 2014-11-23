@@ -73,6 +73,7 @@ public class WordGrid{
         }
         return true;
     }
+    /**Helper method*/
     public static int directionV(int v,int r){
 	if (v==-1){
 	    return r-1;
@@ -84,6 +85,7 @@ public class WordGrid{
 	    return r;
 	}
     }
+    /**Helper method*/
     public static int directionH(int h, int c){
 	if (h==-1){
 	    return c-1;
@@ -95,6 +97,24 @@ public class WordGrid{
 	    return c;
 	}
     }
+    /**Attempts to randomly add words from an ArrayList of words.
+     *
+     *@param bank is a word bank from which words to be added are taken.
+     */
+    public void generate(ArrayList<String> bank){
+	Random ayn = new Random();
+	for (int i=0; i<bank.size(); i++){
+	    boolean done = false;
+	    int j = 0;
+	    int yy = 0;
+	    int xx = 0;
+	    while(j<=25 && !(done)){
+		done=addWord(bank.get(i),ayn.nextInt(data.length),ayn.nextInt(data[0].length),randD(),randD());
+		j++;
+	    }
+	}
+    }
+    /**Helper method*/
     public static int randD(){
 	Random rand = new Random();
 	int d = rand.nextInt(3);
@@ -106,21 +126,6 @@ public class WordGrid{
 	}
 	else{
 	    return 1;
-	}
-    }
-    public void generate(ArrayList<String> bank){
-	Random ayn = new Random();
-	for (int i=0; i<bank.size(); i++){
-	    boolean done = false;
-	    int j = 0;
-	    int yy = 0;
-	    int xx = 0;
-	    while(j<=25 && !(done)){
-		yy = randD();
-		xx = randD();
-		done=addWord(bank.get(i),ayn.nextInt(data.length),ayn.nextInt(data[0].length),yy,xx);
-		j++;
-	    }
 	}
     }
 }
