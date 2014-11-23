@@ -3,7 +3,7 @@ import java.io.*;
 
 public class WordGrid{
     private char[][]data;
-
+    
     /**Initialize the grid to the size specified and fill all of the positions
      *with spaces.
      *@param row is the starting height of the WordGrid
@@ -13,16 +13,16 @@ public class WordGrid{
 	data = new char[rows][cols];
 	clear();
     }
-
+    
     /**Set all values in the WordGrid to spaces ' '*/
     private void clear(){
 	for (int i=0;i<data.length;i++){
-		for (int j=0;j<data[i].length;j++){
-			data[i][j]=' ';
-		}
+	    for (int j=0;j<data[i].length;j++){
+		data[i][j]=' ';
+	    }
 	}
     }
-
+    
     /**The proper formatting for a WordGrid is created in the toString.
      *@return a String with each character separated by spaces, and each row
      *separated by newlines.
@@ -30,10 +30,10 @@ public class WordGrid{
     public String toString(){
 	String ret="";
 	for (int i=0;i<data.length;i++){
-                for (int j=0;j<data[i].length;j++){
-                        ret+=data[i][j]+" ";
-                }
-		ret+="\n";
+	    for (int j=0;j<data[i].length;j++){
+		ret+=data[i][j]+" ";
+	    }
+	    ret+="\n";
         }
 	return ret;
     }
@@ -55,21 +55,21 @@ public class WordGrid{
 	    return false;
 	}
         if (row>=data.length || col>=data[0].length){
-	        return false;
+	    return false;
         }
         int x=col;
 	int y=row;
         for (int i=0;i<word.length();i++){
 	    if (x>=data[0].length || y>=data.length || y<0 || x<0 || (data[y][x]!=' ' && word.charAt(i)!=data[y][x])){
-                        return false;
-                }
-		x=directionH(h,x);
-		y=directionV(v,y);
+		return false;
+	    }
+	    x=directionH(h,x);
+	    y=directionV(v,y);
 	}
         for (int i=0;i<word.length();i++){
-                data[row][col]=word.charAt(i);
-                col=directionH(h,col);
-		row=directionV(v,row);
+	    data[row][col]=word.charAt(i);
+	    col=directionH(h,col);
+	    row=directionV(v,row);
         }
         return true;
     }
@@ -106,12 +106,12 @@ public class WordGrid{
 	for (int i=0; i<bank.size(); i++){
 	    boolean done = false;
 	    int j = 0;
-	    while(j<=20 && !(done)){
+	    while(j<=100 && !(done)){
 		done=addWord((bank.get(i)).toUpperCase(),ayn.nextInt(data.length),ayn.nextInt(data[0].length),randD(),randD());
 		j++;
 	    }
 	}
-	//filler();
+	filler();
     }
     /**Helper method*/
     public static int randD(){
@@ -131,11 +131,11 @@ public class WordGrid{
     public void filler(){
 	Random ayn = new Random();
 	for (int i=0;i<data.length;i++){
-		for (int j=0;j<data[i].length;j++){
-		    if (data[i][j]==' '){
-			data[i][j]=(char)(ayn.nextInt((90-65)+1)+65);
-		    }
+	    for (int j=0;j<data[i].length;j++){
+		if (data[i][j]==' '){
+		    data[i][j]=(char)(ayn.nextInt((90-65)+1)+65);
 		}
+	    }
 	}
     }
 }
