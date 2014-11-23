@@ -1,6 +1,3 @@
-import java.util.*;
-import java.io.*;
-
 public class WordGrid{
     private char[][]data;
 
@@ -51,20 +48,19 @@ public class WordGrid{
      *or there are overlapping letters that do not match, then false is returned.
      */
     public boolean addWord(String word,int row, int col,int v, int h){
-	if (v==0 && h==0){
-	    return false;
-	}
-        if (row>=data.length || col>=data[0].length){
+        if (word.length()>(Math.min(data[0].length,data.length)) || row>=data.length || col>=data[0].length){
 	        return false;
         }
         int x=col;
 	int y=row;
         for (int i=0;i<word.length();i++){
-	    if (x>=data[0].length || y>=data.length || y<0 || x<0 || (data[y][x]!=' ' && word.charAt(i)!=data[y][x])){
+                if (x>=data[0].length || y>=data.length || (data[y][x]!=' ' && word.charAt(i)!=data[y][x])){
                         return false;
                 }
 		x=directionH(h,x);
 		y=directionV(v,y);
+		System.out.println(x);
+		System.out.println(y);
 	}
         for (int i=0;i<word.length();i++){
                 data[row][col]=word.charAt(i);
@@ -93,34 +89,6 @@ public class WordGrid{
 	}
 	else {
 	    return c;
-	}
-    }
-    public static int randD(){
-	Random rand = new Random();
-	int d = rand.nextInt(3);
-	if (d==0){
-	    return -1;
-	}
-	if (d==1){
-	    return 0;
-	}
-	else{
-	    return 1;
-	}
-    }
-    public void generate(ArrayList<String> bank){
-	Random ayn = new Random();
-	for (int i=0; i<bank.size(); i++){
-	    boolean done = false;
-	    int j = 0;
-	    int yy = 0;
-	    int xx = 0;
-	    while(j<=25 && !(done)){
-		yy = randD();
-		xx = randD();
-		done=addWord(bank.get(i),ayn.nextInt(data.length),ayn.nextInt(data[0].length),yy,xx);
-		j++;
-	    }
 	}
     }
 }

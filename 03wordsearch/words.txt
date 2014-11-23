@@ -1,5 +1,10 @@
-hypergeometric
-binomial
-geometric
-negativebinomial
-poisson
+mal
+inara
+wash
+zoe
+simon
+kaylee
+jayne
+river
+book
+reaver
