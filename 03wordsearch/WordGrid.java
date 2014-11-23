@@ -106,7 +106,7 @@ public class WordGrid{
 	for (int i=0; i<bank.size(); i++){
 	    boolean done = false;
 	    int j = 0;
-	    while(j<=100 && !(done)){
+	    while(j<=25 && !(done)){
 		done=addWord((bank.get(i)).toUpperCase(),ayn.nextInt(data.length),ayn.nextInt(data[0].length),randD(),randD());
 		j++;
 	    }

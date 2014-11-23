@@ -12,7 +12,5 @@ public class Drive{
 	}
 	g.generate(slova);
 	System.out.println(g);
-	g.filler();
-	System.out.println(g);
     }
 }
