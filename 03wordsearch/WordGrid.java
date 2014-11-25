@@ -63,39 +63,15 @@ public class WordGrid{
 	    if (x>=data[0].length || y>=data.length || y<0 || x<0 || (data[y][x]!=' ' && word.charAt(i)!=data[y][x])){
 		return false;
 	    }
-	    x=directionH(h,x);
-	    y=directionV(v,y);
+	    x+=h;
+	    y+=v;
 	}
         for (int i=0;i<word.length();i++){
 	    data[row][col]=word.charAt(i);
-	    col=directionH(h,col);
-	    row=directionV(v,row);
+	    col+=h;
+	    row+=v;
         }
         return true;
-    }
-    /**Helper method*/
-    public static int directionV(int v,int r){
-	if (v==-1){
-	    return r-1;
-	}
-	if (v==1){
-	    return r+1;
-	}
-	else {
-	    return r;
-	}
-    }
-    /**Helper method*/
-    public static int directionH(int h, int c){
-	if (h==-1){
-	    return c-1;
-	}
-	if (h==1){
-	    return c+1;
-	}
-	else {
-	    return c;
-	}
     }
     /**Attempts to randomly add words from an ArrayList of words.
      *
@@ -107,25 +83,11 @@ public class WordGrid{
 	    boolean done = false;
 	    int j = 0;
 	    while(j<=25 && !(done)){
-		done=addWord((bank.get(i)).toUpperCase(),ayn.nextInt(data.length),ayn.nextInt(data[0].length),randD(),randD());
+		done=addWord((bank.get(i)).toUpperCase(),ayn.nextInt(data.length),ayn.nextInt(data[0].length),ayn.nextInt(3)-1,ayn.nextInt(3)-1);
 		j++;
 	    }
 	}
 	filler();
-    }
-    /**Helper method*/
-    public static int randD(){
-	Random rand = new Random();
-	int d = rand.nextInt(3);
-	if (d==0){
-	    return -1;
-	}
-	if (d==1){
-	    return 0;
-	}
-	else{
-	    return 1;
-	}
     }
     /**Helper method sets all spaces in the WordGrid to random chars.*/
     public void filler(){
