@@ -3,6 +3,7 @@ import java.io.*;
 
 public class WordGrid{
     private char[][]data;
+    private Random ayn;
     
     /**Initialize the grid to the size specified and fill all of the positions
      *with spaces.
@@ -11,6 +12,7 @@ public class WordGrid{
      */
     public WordGrid(int rows,int cols){
 	data = new char[rows][cols];
+        ayn = new Random();
 	clear();
     }
     
@@ -51,10 +53,7 @@ public class WordGrid{
      *or there are overlapping letters that do not match, then false is returned.
      */
     public boolean addWord(String word,int row, int col,int v, int h){
-	if (v==0 && h==0){
-	    return false;
-	}
-        if (row>=data.length || col>=data[0].length){
+	if ((v==0 && h==0) || (row>=data.length || col>=data[0].length)){
 	    return false;
         }
         int x=col;
@@ -73,31 +72,40 @@ public class WordGrid{
         }
         return true;
     }
-    /**Attempts to randomly add words from an ArrayList of words.
+    /**Helper attempts to randomly add words from an ArrayList of words.
      *
-     *@param bank is a word bank from which words to be added are taken.
+     *@param allWords is a word bank from which words to be added are taken.
      */
-    public void generate(ArrayList<String> bank){
-	Random ayn = new Random();
-	for (int i=0; i<bank.size(); i++){
+    private void addManyWordsToList(ArrayList<String> allWords){
+	for (int i=0; i<allWords.size(); i++){
 	    boolean done = false;
 	    int j = 0;
 	    while(j<=25 && !(done)){
-		done=addWord((bank.get(i)).toUpperCase(),ayn.nextInt(data.length),ayn.nextInt(data[0].length),ayn.nextInt(3)-1,ayn.nextInt(3)-1);
+		done=addWord((allWords.get(i)).toLowerCase(),ayn.nextInt(data.length),ayn.nextInt(data[0].length),ayn.nextInt(3)-1,ayn.nextInt(3)-1);
 		j++;
 	    }
 	}
-	filler();
     }
     /**Helper method sets all spaces in the WordGrid to random chars.*/
-    public void filler(){
-	Random ayn = new Random();
+    private void filler(){
 	for (int i=0;i<data.length;i++){
 	    for (int j=0;j<data[i].length;j++){
 		if (data[i][j]==' '){
 		    data[i][j]=(char)(ayn.nextInt((90-65)+1)+65);
 		}
 	    }
+	}
+    }
+    public void loadWordsFromFile(String fileName, boolean fillRandomLetters) throws FileNotFoundException{
+	File mots = new File(fileName);
+	Scanner scan = new Scanner(mots);
+	ArrayList<String> slova = new ArrayList<String>();
+	while(scan.hasNextLine()){
+	    slova.add(scan.nextLine());
+	}
+	addManyWordsToList(slova);
+	if (fillRandomLetters){
+	    filler();
 	}
     }
 }
