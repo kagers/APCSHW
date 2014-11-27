@@ -41,6 +41,10 @@ public class WordGrid{
         }
 	return ret;
     }
+
+    /**Show the words currently contained in the WordGrid.
+     *@return a formatted String containing the words.
+     */
     public String wordsInPuzzle(){
 	String ret="";
 	for (int i=0;i<inGrid.size();i++){
@@ -48,9 +52,14 @@ public class WordGrid{
 	}
 	return ret;
     }
+
+    /**Set the seed for Random object.
+     *@param seed is the seed for the Random.
+     */
     public void setSeed(long seed){
 	ayn.setSeed(seed);
     }
+
     /**Attempt to add a given word to the specified position of the WordGrid.
      *The word is added according to the specified direction, must fit on
      *the WordGrid, and must have a corresponding letter to match any letters
@@ -84,6 +93,7 @@ public class WordGrid{
         }
         return true;
     }
+
     /**Helper attempts to randomly add words from an ArrayList of words.
      *@param allWords is a word bank from which words to be added are taken.
      */
@@ -93,7 +103,7 @@ public class WordGrid{
 	    boolean done = false;
 	    int j = 0;
 	    while(j<=25 && !(done)){
-		done=addWord((allWords.get(i)).toLowerCase(),ayn.nextInt(data.length),ayn.nextInt(data[0].length),ayn.nextInt(3)-1,ayn.nextInt(3)-1);
+		done=addWord((allWords.get(i)).toUpperCase(),ayn.nextInt(data.length),ayn.nextInt(data[0].length),ayn.nextInt(3)-1,ayn.nextInt(3)-1);
 		j++;
 	    }
 	    if (done){
@@ -101,6 +111,7 @@ public class WordGrid{
 	    }
 	}
     }
+
     /**Helper randomizes the order of elements in an ArrayList.
      *@param L is the ArrayList<Integer> to be randomized.
      */
@@ -109,6 +120,7 @@ public class WordGrid{
 	    L.set(i,L.set(ayn.nextInt(L.size()),L.get(i)));
 	}
     }
+
     /**Helper sets all spaces in the WordGrid to random chars.*/
     private void filler(){
 	for (int i=0;i<data.length;i++){
@@ -119,6 +131,7 @@ public class WordGrid{
 	    }
 	}
     }
+
     /**Load words from a text file into an ArrayList and attempts to 
      *add them to the WordGrid.
      *
