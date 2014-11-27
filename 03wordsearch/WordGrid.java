@@ -97,7 +97,7 @@ public class WordGrid{
 		j++;
 	    }
 	    if (done){
-		inGrid.add(allWords.remove(i));
+		inGrid.add(allWords.get(i));
 	    }
 	}
     }
