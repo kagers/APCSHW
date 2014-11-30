@@ -8,14 +8,10 @@ public class Driver{
 	    if (args.length>=3){
 		w.setSeed(Integer.parseInt(args[2]));
 	    }
-	    boolean b=true;
-	    if (args.length==4){
-		if (args[3].equals("1")){
-		    b=false;
-		}
-	    }
-	    w.loadWordsFromFile("words.txt",b);	
-	    System.out.println(w.wordsInPuzzle());
+	    boolean b=!((args.length==4)&&(args[3].equals("1")));
+	    w.loadWordsFromFile("words.txt",b);
+	    System.out.println("\nFind these words:");
+	    System.out.println(w.wordsInPuzzle()+"\n");
 	    System.out.println(w);
 	}
 	else{

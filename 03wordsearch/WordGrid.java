@@ -44,15 +44,18 @@ public class WordGrid{
 
     /**Show the words currently contained in the WordGrid.
      *@return a formatted String containing the words.
-     */
+     */ 
     public String wordsInPuzzle(){
 	String ret="";
+	String temp="";
 	for (int i=0;i<inGrid.size();i++){
-	    ret+=inGrid.get(i)+"\n";
+	    ret+=inGrid.get(i)+"\t";
+	    if ((i+1)%4==0){
+		ret+="\n";
+	    }
 	}
 	return ret;
     }
-
     /**Set the seed for Random object.
      *@param seed is the seed for the Random.
      */
@@ -102,7 +105,7 @@ public class WordGrid{
 	for (int i=0; i<allWords.size(); i++){
 	    boolean done = false;
 	    int j = 0;
-	    while(j<=25 && !(done)){
+	    while(!(done)&&j<=25){
 		done=addWord((allWords.get(i)).toUpperCase(),ayn.nextInt(data.length),ayn.nextInt(data[0].length),ayn.nextInt(3)-1,ayn.nextInt(3)-1);
 		j++;
 	    }
