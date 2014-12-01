@@ -3,6 +3,8 @@ import java.io.*;
 
 public class WordGrid{
     private char[][]data;
+    private Random ayn;
+    private ArrayList<String> inGrid;
     
     /**Initialize the grid to the size specified and fill all of the positions
      *with spaces.
@@ -11,14 +13,16 @@ public class WordGrid{
      */
     public WordGrid(int rows,int cols){
 	data = new char[rows][cols];
+        ayn = new Random();
 	clear();
+	inGrid = new ArrayList<String>();
     }
     
-    /**Set all values in the WordGrid to spaces ' '*/
+    /**Set all values in the WordGrid to underscores '_'*/
     private void clear(){
 	for (int i=0;i<data.length;i++){
 	    for (int j=0;j<data[i].length;j++){
-		data[i][j]=' ';
+		data[i][j]='_';
 	    }
 	}
     }
@@ -37,7 +41,29 @@ public class WordGrid{
         }
 	return ret;
     }
-    /**Attempts to add a given word to the specified position of the WordGrid.
+
+    /**Show the words currently contained in the WordGrid.
+     *@return a formatted String containing the words.
+     */ 
+    public String wordsInPuzzle(){
+	String ret="";
+	String temp="";
+	for (int i=0;i<inGrid.size();i++){
+	    ret+=inGrid.get(i)+"\t";
+	    if ((i+1)%4==0){
+		ret+="\n";
+	    }
+	}
+	return ret;
+    }
+    /**Set the seed for Random object.
+     *@param seed is the seed for the Random.
+     */
+    public void setSeed(long seed){
+	ayn.setSeed(seed);
+    }
+
+    /**Attempt to add a given word to the specified position of the WordGrid.
      *The word is added according to the specified direction, must fit on
      *the WordGrid, and must have a corresponding letter to match any letters
      *that it overlaps.
@@ -51,91 +77,81 @@ public class WordGrid{
      *or there are overlapping letters that do not match, then false is returned.
      */
     public boolean addWord(String word,int row, int col,int v, int h){
-	if (v==0 && h==0){
-	    return false;
-	}
-        if (row>=data.length || col>=data[0].length){
+	if ((v==0 && h==0) || (row>=data.length || col>=data[0].length)){
 	    return false;
         }
         int x=col;
 	int y=row;
         for (int i=0;i<word.length();i++){
-	    if (x>=data[0].length || y>=data.length || y<0 || x<0 || (data[y][x]!=' ' && word.charAt(i)!=data[y][x])){
+	    if (x>=data[0].length || y>=data.length || y<0 || x<0 || (data[y][x]!='_' && word.charAt(i)!=data[y][x])){
 		return false;
 	    }
-	    x=directionH(h,x);
-	    y=directionV(v,y);
+	    x+=h;
+	    y+=v;
 	}
         for (int i=0;i<word.length();i++){
 	    data[row][col]=word.charAt(i);
-	    col=directionH(h,col);
-	    row=directionV(v,row);
+	    col+=h;
+	    row+=v;
         }
         return true;
     }
-    /**Helper method*/
-    public static int directionV(int v,int r){
-	if (v==-1){
-	    return r-1;
-	}
-	if (v==1){
-	    return r+1;
-	}
-	else {
-	    return r;
-	}
-    }
-    /**Helper method*/
-    public static int directionH(int h, int c){
-	if (h==-1){
-	    return c-1;
-	}
-	if (h==1){
-	    return c+1;
-	}
-	else {
-	    return c;
-	}
-    }
-    /**Attempts to randomly add words from an ArrayList of words.
-     *
-     *@param bank is a word bank from which words to be added are taken.
+
+    /**Helper attempts to randomly add words from an ArrayList of words.
+     *@param allWords is a word bank from which words to be added are taken.
      */
-    public void generate(ArrayList<String> bank){
-	Random ayn = new Random();
-	for (int i=0; i<bank.size(); i++){
+    private void addManyWordsToList(ArrayList<String> allWords){
+	randomize(allWords);
+	for (int i=0; i<allWords.size(); i++){
 	    boolean done = false;
 	    int j = 0;
-	    while(j<=25 && !(done)){
-		done=addWord((bank.get(i)).toUpperCase(),ayn.nextInt(data.length),ayn.nextInt(data[0].length),randD(),randD());
+	    while(!(done)&&j<=25){
+		done=addWord((allWords.get(i)).toUpperCase(),ayn.nextInt(data.length),ayn.nextInt(data[0].length),ayn.nextInt(3)-1,ayn.nextInt(3)-1);
 		j++;
 	    }
-	}
-	filler();
-    }
-    /**Helper method*/
-    public static int randD(){
-	Random rand = new Random();
-	int d = rand.nextInt(3);
-	if (d==0){
-	    return -1;
-	}
-	if (d==1){
-	    return 0;
-	}
-	else{
-	    return 1;
+	    if (done){
+		inGrid.add(allWords.get(i));
+	    }
 	}
     }
-    /**Helper method sets all spaces in the WordGrid to random chars.*/
-    public void filler(){
-	Random ayn = new Random();
+
+    /**Helper randomizes the order of elements in an ArrayList.
+     *@param L is the ArrayList<Integer> to be randomized.
+     */
+    private void randomize(ArrayList<String> L){
+	for (int i=0;i<L.size();i++){
+	    L.set(i,L.set(ayn.nextInt(L.size()),L.get(i)));
+	}
+    }
+
+    /**Helper sets all spaces in the WordGrid to random chars.*/
+    private void filler(){
 	for (int i=0;i<data.length;i++){
 	    for (int j=0;j<data[i].length;j++){
-		if (data[i][j]==' '){
+		if (data[i][j]=='_'){
 		    data[i][j]=(char)(ayn.nextInt((90-65)+1)+65);
 		}
 	    }
+	}
+    }
+
+    /**Load words from a text file into an ArrayList and attempts to 
+     *add them to the WordGrid.
+     *
+     *@param fileName is the path of the words file
+     *@param fillRandomLetters indicates whether or not the empty slots
+     *of the WordGrid should be filled.
+     */
+    public void loadWordsFromFile(String fileName, boolean fillRandomLetters) throws FileNotFoundException{
+	File mots = new File(fileName);
+	Scanner scan = new Scanner(mots);
+	ArrayList<String> slova = new ArrayList<String>();
+	while(scan.hasNextLine()){
+	    slova.add(scan.nextLine());
+	}
+	addManyWordsToList(slova);
+	if (fillRandomLetters){
+	    filler();
 	}
     }
 }
