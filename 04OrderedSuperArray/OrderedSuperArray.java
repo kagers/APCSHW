@@ -11,16 +11,15 @@ public class OrderedSuperArray extends SuperArray{
 	    while ((i<size())&&(get(i).compareTo(e)<=0)){
 		i++;
 	    }
-	    if (i==size()){
-		super.add(e);
-	    }
-	    else {
-		super.add(i,e);
-	    }
+	    super.add(i,e);
 	}
     }
     public void add(int index, String o){
 	this.add(o);
+    }
+    public String set(int index, String e){
+	add(e);
+	return remove(index);
     }
     public static void main(String[]args){
 	OrderedSuperArray s = new OrderedSuperArray(10);
@@ -40,5 +39,10 @@ public class OrderedSuperArray extends SuperArray{
 	System.out.println(s);
 	s.add(26000,"Radio");
 	System.out.println(s);
+	System.out.println(s.remove(1));
+	System.out.println(s);
+	System.out.println(s.set(1,"droid"));
+	System.out.println(s);
+	
     }
 }

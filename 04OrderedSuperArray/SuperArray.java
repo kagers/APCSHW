@@ -91,9 +91,6 @@ public class SuperArray{
 		arr[i]=arr[i+1];
 	    }
 	    len--;
-	    if (size()/arr.length<=0.25){
-		resize(arr.length/2);
-	    }
 	    return r;
 	}else{
 	    throw new IndexOutOfBoundsException();
