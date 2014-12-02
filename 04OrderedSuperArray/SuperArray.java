@@ -96,8 +96,26 @@ public class SuperArray{
 	    throw new IndexOutOfBoundsException();
 	}
     }
+    public void insertionSort(){
+	int sortedLimit=0;
+	while (sortedLimit<size()-1){
+	    if (get(sortedLimit).compareTo(get(sortedLimit+1))<=0){
+		sortedLimit++;
+	    }
+	    else {
+		int newIndex=-1;
+		int i=0;
+		while (newIndex==-1){
+		    if (get(i).compareTo(get(sortedLimit+1))>=0){
+			newIndex=i;
+		    }
+		}
+		System.out.println(i);    
+	    }
+	}
+    }
     public static void main(String[]args){
-	SuperArray L = new SuperArray();
+	/*SuperArray L = new SuperArray();
 	String x = new String("5");
 
 	System.out.println(L.size());
@@ -167,6 +185,14 @@ public class SuperArray{
 	L.clear();
 	System.out.println(L);
 	System.out.println(L.size());
-	System.out.println(L.actSize());
+	System.out.println(L.actSize());*/
+	SuperArray S = new SuperArray();
+	S.add("5");
+	S.add("9");
+	S.add("86");
+	S.add("4");
+	S.add("12");
+	S.add("-3");
+	S.insertionSort();
     }
 }
