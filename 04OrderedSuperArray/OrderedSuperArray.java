@@ -2,6 +2,9 @@ public class OrderedSuperArray extends SuperArray{
     public OrderedSuperArray(int x){
 	super(x);
     }
+    public OrderedSuperArray(){
+	super();
+    }
     public void add(String e){
 	if (size()==0){
 	    super.add(e);

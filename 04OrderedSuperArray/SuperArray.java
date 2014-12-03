@@ -120,6 +120,16 @@ public class SuperArray{
 	    }
 	}
     }
+    // from announcements page
+    public void badInsertionSort(){
+        OrderedSuperArray c = new OrderedSuperArray();
+        while( this.size() > 0){ 
+            c.add(this.remove(0));
+        }
+        while(c.size() > 0){
+            this.add(c.remove(0));
+        }
+    }
     public static void main(String[]args){
 	/*SuperArray L = new SuperArray();
 	String x = new String("5");
@@ -192,26 +202,65 @@ public class SuperArray{
 	System.out.println(L);
 	System.out.println(L.size());
 	System.out.println(L.actSize());*/
-	SuperArray S = new SuperArray();
-	S.add("5");
-	S.add("9");
-	S.add("8");
-	S.add("4");
-	S.add("1");
-	S.add("3");
-	System.out.println(S);
-	S.insertionSort();
-	System.out.println(S);
-
-	SuperArray F = new SuperArray();
-	F.add("ha");
-	F.add("ja");
-	F.add("za");
-	F.add("ka");
-	F.add("aa");
-	F.add("ah");
-	System.out.println(F);
-	F.insertionSort();
-	System.out.println(F);
+	if (args.length==1){
+	    SuperArray F = new SuperArray();
+	    F.add("ha");
+	    F.add("ja");
+	    F.add("za");
+	    F.add("ka");
+	    F.add("aa");
+	    F.add("ah");
+	    F.add("ha");
+	    F.add("ja");
+	    F.add("za");
+	    F.add("ka");
+	    F.add("aa");
+	    F.add("ah");
+	    F.add("hawergherh");
+	    F.add("jaerherh");
+	    F.add("zwerhaaherh");
+	    F.add("aerh3hka");
+	    F.add("aaerhae5ra");
+	    F.add("aehtjjaah");
+	    F.add("AEYAH535hawerghSAGAerh");
+	    F.add("3546jaerherh");
+	    F.add("#$zwerhaaherh");
+	    F.add("WEEREWGSHWRaerh3hka");
+	    F.add("64aaerhae5ra");
+	    F.add("Iaehtjjaah"); 
+	    System.out.println(F);
+	    F.badInsertionSort();
+	    System.out.println(F);
+	}
+	if (args.length==2){
+	    SuperArray F = new SuperArray();
+	    F.add("ha");
+	    F.add("ja");
+	    F.add("za");
+	    F.add("ka");
+	    F.add("aa");
+	    F.add("ah");
+	    F.add("ha");
+	    F.add("ja");
+	    F.add("za");
+	    F.add("ka");
+	    F.add("aa");
+	    F.add("ah");
+	    F.add("hawergherh");
+	    F.add("jaerherh");
+	    F.add("zwerhaaherh");
+	    F.add("aerh3hka");
+	    F.add("aaerhae5ra");
+	    F.add("aehtjjaah");
+	    F.add("AEYAH535hawerghSAGAerh");
+	    F.add("3546jaerherh");
+	    F.add("#$zwerhaaherh");
+	    F.add("WEEREWGSHWRaerh3hka");
+	    F.add("64aaerhae5ra");
+	    F.add("Iaehtjjaah"); 
+	    System.out.println(F);
+	    F.insertionSort();
+	    System.out.println(F);
+	}
     }
 }
