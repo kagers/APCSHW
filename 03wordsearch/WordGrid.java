@@ -106,7 +106,7 @@ public class WordGrid{
 	    boolean done = false;
 	    int j = 0;
 	    while(!(done)&&j<=25){
-		done=addWord((allWords.get(i)).toUpperCase(),ayn.nextInt(data.length),ayn.nextInt(data[0].length),ayn.nextInt(3)-1,ayn.nextInt(3)-1);
+		done=addWord((allWords.get(i)).toLowerCase(),ayn.nextInt(data.length),ayn.nextInt(data[0].length),ayn.nextInt(3)-1,ayn.nextInt(3)-1);
 		j++;
 	    }
 	    if (done){
@@ -129,7 +129,7 @@ public class WordGrid{
 	for (int i=0;i<data.length;i++){
 	    for (int j=0;j<data[i].length;j++){
 		if (data[i][j]=='_'){
-		    data[i][j]=(char)(ayn.nextInt((90-65)+1)+65);
+		    data[i][j]=(char)(ayn.nextInt(('z'-'a')+1)+'a');
 		}
 	    }
 	}
