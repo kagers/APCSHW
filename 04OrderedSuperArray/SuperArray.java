@@ -99,18 +99,24 @@ public class SuperArray{
     public void insertionSort(){
 	int sortedLimit=0;
 	while (sortedLimit<size()-1){
-	    if (get(sortedLimit).compareTo(get(sortedLimit+1))<=0){
+	    String temp = get(sortedLimit+1);
+	    if (get(sortedLimit).compareTo(temp)<=0){
 		sortedLimit++;
 	    }
 	    else {
 		int newIndex=-1;
 		int i=0;
 		while (newIndex==-1){
-		    if (get(i).compareTo(get(sortedLimit+1))>=0){
-			newIndex=i;
+		    if (get(i).compareTo(temp)>=0){
+			newIndex=i+1;
 		    }
+		    i++;
 		}
-		System.out.println(i);    
+		for (int j=sortedLimit+1;j>=newIndex;j--){
+		    set(j,get(j-1));
+		}
+		set(newIndex-1,temp);
+		sortedLimit++;
 	    }
 	}
     }
@@ -189,10 +195,23 @@ public class SuperArray{
 	SuperArray S = new SuperArray();
 	S.add("5");
 	S.add("9");
-	S.add("86");
+	S.add("8");
 	S.add("4");
-	S.add("12");
-	S.add("-3");
+	S.add("1");
+	S.add("3");
+	System.out.println(S);
 	S.insertionSort();
+	System.out.println(S);
+
+	SuperArray F = new SuperArray();
+	F.add("ha");
+	F.add("ja");
+	F.add("za");
+	F.add("ka");
+	F.add("aa");
+	F.add("ah");
+	System.out.println(F);
+	F.insertionSort();
+	System.out.println(F);
     }
 }
