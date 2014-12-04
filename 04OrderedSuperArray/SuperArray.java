@@ -132,6 +132,14 @@ public class SuperArray{
             this.add(c.remove(0));
         }
     }
+    public int find(String target){
+	for (int i=0;i<size();i++){
+	    if (get(i).equals(target)){
+		return i;
+	    }
+	}
+	return -1;
+    }
     public static void main(String[]args){
 	/*SuperArray L = new SuperArray();
 	String x = new String("5");
