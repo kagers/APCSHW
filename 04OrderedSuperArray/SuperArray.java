@@ -204,24 +204,49 @@ public class SuperArray{
 	System.out.println(L);
 	System.out.println(L.size());
 	System.out.println(L.actSize());*/
+
+	//SEE DOCUMENT.TXT FOR MORE INFO
 	SuperArray F = new SuperArray();
+	String[] f = new String[100];
 	Random r = new Random(24);
-	for (int i=0; i<20000; i++){
-	    String s = "";
-	    int limit = r.nextInt(10-1)+1+1;
-	    for (int j=0; j<limit; j++){
-		s+=(char)(r.nextInt('z'-'A')+1+'A');
+	if (args.length<=2){
+	    for (int i=0; i<20000; i++){
+		String s = "";
+		int limit = r.nextInt(10-1)+1+1;
+		for (int j=0; j<limit; j++){
+		    s+=(char)(r.nextInt('z'-'A')+1+'A');
+		}
+		F.add(s);
 	    }
-	    F.add(s);
+	    if (args.length==1){
+		F.badInsertionSort();
+	    }
+	    if (args.length==2){
+		F.insertionSort();
+	    }
 	}
-	//System.out.println(F);
-	if (args.length==1){
-	    F.badInsertionSort();
-	    //System.out.println(F);
-	}
-	if (args.length==2){
-	    F.insertionSort();
-	    //System.out.println(F);
+	else {
+	    if (args.length==3){
+		for (int i=0; i<100; i++){
+		    String s = "";
+		    int limit = r.nextInt(10-1)+1+1;
+		    for (int j=0; j<limit; j++){
+			s+=(char)(r.nextInt('z'-'A')+1+'A');
+		    }
+		    F.add(s);
+		    f[i]=s;
+		}
+		boolean eq = true;
+		int index = 0;
+		F.insertionSort();
+		Arrays.sort(f);
+		while (index>=F.size() && eq){
+		    if (!(F.get(index).equals(f[index]))){
+			eq=false;
+		    }
+		}
+		System.out.println(eq);
+	    }
 	}
     }
 }
