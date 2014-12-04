@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class SuperArray{
     private String[] arr;
     private int len;
@@ -202,65 +204,24 @@ public class SuperArray{
 	System.out.println(L);
 	System.out.println(L.size());
 	System.out.println(L.actSize());*/
+	SuperArray F = new SuperArray();
+	Random r = new Random(24);
+	for (int i=0; i<20000; i++){
+	    String s = "";
+	    int limit = r.nextInt(10);
+	    for (int j=0; j<limit; j++){
+		s+=(char)(r.nextInt('z'-'A')+1+'A');
+	    }
+	    F.add(s);
+	}
+	//System.out.println(F);
 	if (args.length==1){
-	    SuperArray F = new SuperArray();
-	    F.add("ha");
-	    F.add("ja");
-	    F.add("za");
-	    F.add("ka");
-	    F.add("aa");
-	    F.add("ah");
-	    F.add("ha");
-	    F.add("ja");
-	    F.add("za");
-	    F.add("ka");
-	    F.add("aa");
-	    F.add("ah");
-	    F.add("hawergherh");
-	    F.add("jaerherh");
-	    F.add("zwerhaaherh");
-	    F.add("aerh3hka");
-	    F.add("aaerhae5ra");
-	    F.add("aehtjjaah");
-	    F.add("AEYAH535hawerghSAGAerh");
-	    F.add("3546jaerherh");
-	    F.add("#$zwerhaaherh");
-	    F.add("WEEREWGSHWRaerh3hka");
-	    F.add("64aaerhae5ra");
-	    F.add("Iaehtjjaah"); 
-	    System.out.println(F);
 	    F.badInsertionSort();
-	    System.out.println(F);
+	    //System.out.println(F);
 	}
 	if (args.length==2){
-	    SuperArray F = new SuperArray();
-	    F.add("ha");
-	    F.add("ja");
-	    F.add("za");
-	    F.add("ka");
-	    F.add("aa");
-	    F.add("ah");
-	    F.add("ha");
-	    F.add("ja");
-	    F.add("za");
-	    F.add("ka");
-	    F.add("aa");
-	    F.add("ah");
-	    F.add("hawergherh");
-	    F.add("jaerherh");
-	    F.add("zwerhaaherh");
-	    F.add("aerh3hka");
-	    F.add("aaerhae5ra");
-	    F.add("aehtjjaah");
-	    F.add("AEYAH535hawerghSAGAerh");
-	    F.add("3546jaerherh");
-	    F.add("#$zwerhaaherh");
-	    F.add("WEEREWGSHWRaerh3hka");
-	    F.add("64aaerhae5ra");
-	    F.add("Iaehtjjaah"); 
-	    System.out.println(F);
 	    F.insertionSort();
-	    System.out.println(F);
+	    //System.out.println(F);
 	}
     }
 }
