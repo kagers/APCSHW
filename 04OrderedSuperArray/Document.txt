@@ -1,0 +1,18 @@
+1. I checked that the insertionSort() does indeed work by
+
+2a. In order to check the times for the two different sorts, I created a SuperArray in the main
+and filled it with 20000 strings of a length between 1 and 10 with random chars. The chars are
+upper and lower case letters, and the chars associated with values between Z's and a's respective
+values. Then, i made it so that if there is one argument given, badInsertionSort() will happen,
+and if there are two arguments given, insertionSort() will happen. The times logged (including time
+taken to generate the SuperArray) using 24 as the seed value were:
+
+badInsertionSort():
+real	0m6.245s
+user	0m6.080s
+sys	0m0.379s
+
+insertionSort():
+real	0m4.074s
+user	0m3.922s
+sys	0m0.291s

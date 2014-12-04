@@ -208,7 +208,7 @@ public class SuperArray{
 	Random r = new Random(24);
 	for (int i=0; i<20000; i++){
 	    String s = "";
-	    int limit = r.nextInt(10);
+	    int limit = r.nextInt(10-1)+1+1;
 	    for (int j=0; j<limit; j++){
 		s+=(char)(r.nextInt('z'-'A')+1+'A');
 	    }
