@@ -27,7 +27,7 @@ public class OrderedSuperArray extends SuperArray{
     public int find(String target){
 	int piv = (size()/2);
 	int change = (size()/2);
-	for (int i=2; i<size(); i++){
+	for (int i=0; i<=(Math.log(size())/Math.log(2))+1; i++){
 	    if (get(piv).compareTo(target)>0){
 		change/=2;
 		piv-=change++;
