@@ -140,6 +140,19 @@ public class SuperArray{
 	}
 	return -1;
     }
+    public void selectionSort(){
+	for (int i=0;i<size();i++){
+	    String min=get(i);
+	    int mindex=i;
+	    for (int j=i+1;j<size();j++){
+		if (get(j).compareTo(min)<0){
+		    min=get(j);
+		    mindex=j;
+		}
+	    }
+	    set(mindex,set(i,min));
+	}
+    }
     public static void main(String[]args){
 	/*SuperArray L = new SuperArray();
 	String x = new String("5");
@@ -214,10 +227,10 @@ public class SuperArray{
 	System.out.println(L.actSize());*/
 
 	//SEE DOCUMENT.TXT FOR MORE INFO
-	/*SuperArray F = new SuperArray();
+	SuperArray F = new SuperArray();
 	String[] f = new String[100];
 	Random r = new Random(24);
-	if (args.length<=2){
+	if (args.length<=3){
 	    for (int i=0; i<20000; i++){
 		String s = "";
 		int limit = r.nextInt(10-1)+1+1;
@@ -232,9 +245,12 @@ public class SuperArray{
 	    if (args.length==2){
 		F.insertionSort();
 	    }
+	    if (args.length==3){
+		F.selectionSort();
+	    }
 	}
 	else {
-	    if (args.length==3){
+	    if (args.length==4){
 		for (int i=0; i<100; i++){
 		    String s = "";
 		    int limit = r.nextInt(10-1)+1+1;
@@ -246,7 +262,7 @@ public class SuperArray{
 		}
 		boolean eq = true;
 		int index = 0;
-		F.insertionSort();
+		F.selectionSort();
 		Arrays.sort(f);
 		while (index>=F.size() && eq){
 		    if (!(F.get(index).equals(f[index]))){
@@ -255,7 +271,17 @@ public class SuperArray{
 		}
 		System.out.println(eq);
 	    }
-	    }*/
-	
+	}
+	if (args.length==5){
+	    SuperArray supa = new SuperArray();
+	    supa.add("fjdgbkd");
+	    supa.add("sskfn");
+	    supa.add("dlfjbs");
+	    supa.add("iapsfhi");
+	    supa.add("ajsab");
+	    System.out.println(supa);
+	    supa.selectionSort();
+	    System.out.println(supa);
+	}
     }
 }
