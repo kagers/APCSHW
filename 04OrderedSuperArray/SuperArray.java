@@ -214,7 +214,7 @@ public class SuperArray{
 	System.out.println(L.actSize());*/
 
 	//SEE DOCUMENT.TXT FOR MORE INFO
-	SuperArray F = new SuperArray();
+	/*SuperArray F = new SuperArray();
 	String[] f = new String[100];
 	Random r = new Random(24);
 	if (args.length<=2){
@@ -255,6 +255,7 @@ public class SuperArray{
 		}
 		System.out.println(eq);
 	    }
-	}
+	    }*/
+	
     }
 }

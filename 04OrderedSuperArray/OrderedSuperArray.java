@@ -26,19 +26,17 @@ public class OrderedSuperArray extends SuperArray{
     }
     public int find(String target){
 	int piv = (size()/2);
+	int change = (size()/2);
 	for (int i=2; i<size(); i++){
-	    //System.out.println(piv);
-	    //System.out.println(size()/2/i);
 	    if (get(piv).compareTo(target)>0){
-		piv=(size()/2/i);
-		//System.out.println(">");
+		change/=2;
+		piv-=change++;
 	    }
 	    else if (get(piv).compareTo(target)<0){
-		piv+=(size()/2/i);
-		//System.out.println("<");
+		change/=2;
+		piv+=change++;
 	    }
 	    else {
-		//System.out.println("=");
 		if (piv==0 || !((get(piv-1)).equals(target))){
 		    return piv;
 		}
@@ -74,6 +72,10 @@ public class OrderedSuperArray extends SuperArray{
 	System.out.println(s.remove(1));
 	System.out.println(s);
 	System.out.println(s.set(1,"droid"));
+	s.add("zman");
+	s.add("mint");
+	s.add("fillion");
+	s.add("sleep");
 	System.out.println(s);
 	System.out.println(s.find("djdjd"));
 	System.out.println(s.find("Radio"));
@@ -81,6 +83,10 @@ public class OrderedSuperArray extends SuperArray{
 	System.out.println(s.find("bourgeoisie"));
 	System.out.println(s.find("droid"));
 	System.out.println(s.find("duran"));
+	System.out.println(s.find("fillion"));
+	System.out.println(s.find("mint"));
 	System.out.println(s.find("paranoid"));
+	System.out.println(s.find("sleep"));
+	System.out.println(s.find("zman"));
     }
 }
