@@ -1,0 +1,5 @@
+badInsertionSort() 100%
+
+insertionSort() 55.8%
+
+selectionSort() 87.5%

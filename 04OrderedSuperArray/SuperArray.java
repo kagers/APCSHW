@@ -99,13 +99,9 @@ public class SuperArray{
 	}
     }
     public void insertionSort(){
-	int sortedLimit=0;
-	while (sortedLimit<size()-1){
+	for (int sortedLimit=0;sortedLimit<size()-1;sortedLimit++){
 	    String temp = get(sortedLimit+1);
-	    if (get(sortedLimit).compareTo(temp)<=0){
-		sortedLimit++;
-	    }
-	    else {
+	    if (get(sortedLimit).compareTo(temp)>=0){
 		int newIndex=-1;
 		int i=0;
 		while (newIndex==-1){
@@ -118,7 +114,6 @@ public class SuperArray{
 		    set(j,get(j-1));
 		}
 		set(newIndex-1,temp);
-		sortedLimit++;
 	    }
 	}
     }
@@ -262,7 +257,7 @@ public class SuperArray{
 		}
 		boolean eq = true;
 		int index = 0;
-		F.selectionSort();
+		F.insertionSort();
 		Arrays.sort(f);
 		while (index>=F.size() && eq){
 		    if (!(F.get(index).equals(f[index]))){
