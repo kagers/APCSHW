@@ -16,7 +16,7 @@ public class Converter extends JFrame implements ActionListener{
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 	
 	pane = this.getContentPane();
-	pane.setLayout(new BoxLayout(pane,BoxLayout.Y_AXIS));
+	pane.setLayout(new FlowLayout());
 
 	b = new JButton("Convert!");
 	b.setActionCommand("convert");
@@ -53,10 +53,10 @@ public class Converter extends JFrame implements ActionListener{
 	    try {
 		double s = Double.parseDouble(text.getText());
 		if (c.isSelected()){
-		    output.setText(((5/9.0)*(s-32))+" C");
+		    output.setText(((5/9.0)*(s-32))+" \u00b0C");
 		}
 		else{
-		    output.setText((((9/5.0)*s)+32)+" F");
+		    output.setText((((9/5.0)*s)+32)+" \u00b0F");
 		}
 	    }
 	    catch (Exception f){
