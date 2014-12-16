@@ -21,23 +21,23 @@ public class Sorts{
 	    System.out.println(Arrays.toString(arr));
 	}
     }
-    public void selectionSort(int[] arr){
-	for (int i=0;i<size();i++){
+    public static void selection(int[] arr){
+	for (int i=0;i<arr.length;i++){
 	    int min=arr[i];
 	    int mindex=i;
-	    for (int j=i+1;j<size();j++){
-		if (int[i]<min){
-		    min=int[j];
+	    for (int j=i+1;j<arr.length;j++){
+		if (arr[i]<min){
+		    min=arr[j];
 		    mindex=j;
 		}
 	    }
 	    swap(arr,i,min);
 	}
     }
-    public void insertionSort(int[] arr){
-	for (int sortedLimit=0;sortedLimit<size()-1;sortedLimit++){
-	    String temp = get(sortedLimit+1);
-	    if (int[sortedLimit]>=temp){
+    public static void insertion(int[] arr){
+	for (int sortedLimit=0;sortedLimit<arr.length-1;sortedLimit++){
+	    int temp = arr[sortedLimit+1];
+	    if (arr[sortedLimit]>=temp){
 		int newIndex=-1;
 		int i=0;
 		while (newIndex==-1){
@@ -56,7 +56,15 @@ public class Sorts{
     public static void main(String[]args){
 	int[] a = {6,0,5,3,4,7,2,1};
 	System.out.println(Arrays.toString(a));
-	bubble(a);
+	if (args.length==1){
+	    bubble(a);
+	}
+	if (args.length==2){
+	    selection(a);
+	}
+	if (args.length==3){
+	    insertion(a);
+	}
 	System.out.println(Arrays.toString(a));	
     }
 }

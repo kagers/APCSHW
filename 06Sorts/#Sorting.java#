@@ -56,7 +56,9 @@ public class Sorts{
     public static void main(String[]args){
 	int[] a = {6,0,5,3,4,7,2,1};
 	System.out.println(Arrays.toString(a));
-	bubble(a);
+	if (args.length==1){
+	    bubble(a);
+	}
 	System.out.println(Arrays.toString(a));	
     }
 }
