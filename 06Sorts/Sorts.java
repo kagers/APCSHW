@@ -20,6 +20,28 @@ public class Sorts{
 	    }
 	}
     }
+    public static void dubbleBubble(int[] arr){
+	boolean swapped=true;
+	for (int i=arr.length-1; i>=0; i--){
+	    if (swapped){
+		swapped=false;
+		for (int j=0; j<i; j++){
+		    if (arr[j]>arr[j+1]){
+			swap(arr,j,j+1);
+			swapped=true;
+		    }
+		}
+		if (!swapped){
+		    break;
+		}
+		for (int k=i; k>arr.length-i; k--){
+		    if (arr[k]<arr[k-1]){
+			swap(arr,k,k-1);
+		    }
+		} 
+	    }
+	}
+    }
     public static void selection(int[] arr){
 	for (int i=0;i<arr.length;i++){
 	    int min=arr[i];
@@ -63,14 +85,23 @@ public class Sorts{
 	    bubble(a);
 	}
 	if (args.length==2){
-	    selection(a);
+	    dubbleBubble(a);
 	}
 	if (args.length==3){
-	    insertion(a);
+	    selection(a);
 	}
 	if (args.length==4){
+	    insertion(a);
+	}
+	if (args.length==5){
 	    Arrays.sort(a);
 	}
-	//System.out.println(Arrays.toString(a));	
+	//System.out.println(Arrays.toString(a));
+	if (args.length==6){
+	    int[] b = {6,0,5,3,4,7,2,1};
+	    System.out.println(Arrays.toString(b));
+	    dubbleBubble(b);
+	    System.out.println(Arrays.toString(b));	
+	}
     }
 }
