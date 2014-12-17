@@ -7,9 +7,9 @@ public class Sorts{
 	a[k]=t;
     }
     public static void bubble(int[] arr){
-	boolean swapped;
+	boolean swapped=true;
 	for (int i=arr.length-1; i>=0; i--){
-	    if (swapped=true){
+	    if (swapped){
 		swapped=false;
 		for (int j=0; j<i; j++){
 		    if (arr[j]>arr[j+1]){
@@ -18,7 +18,6 @@ public class Sorts{
 		    }
 		}
 	    }
-	    System.out.println(Arrays.toString(arr));
 	}
     }
     public static void selection(int[] arr){
@@ -26,12 +25,12 @@ public class Sorts{
 	    int min=arr[i];
 	    int mindex=i;
 	    for (int j=i+1;j<arr.length;j++){
-		if (arr[i]<min){
+		if (arr[j]<min){
 		    min=arr[j];
 		    mindex=j;
 		}
 	    }
-	    swap(arr,i,min);
+	    swap(arr,i,mindex);
 	}
     }
     public static void insertion(int[] arr){
@@ -54,8 +53,12 @@ public class Sorts{
 	}
     }
     public static void main(String[]args){
-	int[] a = {6,0,5,3,4,7,2,1};
-	System.out.println(Arrays.toString(a));
+	int[] a = new int[100000];
+	Random r = new Random(11);
+	for (int i=0; i<100000; i++){
+	    a[i]=r.nextInt(100000);
+	}
+	//System.out.println(Arrays.toString(a));
 	if (args.length==1){
 	    bubble(a);
 	}
@@ -65,6 +68,9 @@ public class Sorts{
 	if (args.length==3){
 	    insertion(a);
 	}
-	System.out.println(Arrays.toString(a));	
+	if (args.length==4){
+	    Arrays.sort(a);
+	}
+	//System.out.println(Arrays.toString(a));	
     }
 }
