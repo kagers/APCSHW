@@ -1,10 +1,35 @@
 import java.util.*;
 
 public class Sorts{
+    public static String name(){
+	return "Gershfeld,Katherine";
+    }
+    public static int period(){
+	return 6;
+    }
     public static void swap(int[] a, int k, int l){
 	int t=a[l];
 	a[l]=a[k];
 	a[k]=t;
+    }
+    public static void radix(int[] arr){
+	int n=0;
+	int m=0;
+	do {
+	    ArrayList<ArrayList> buckets = new ArrayList<ArrayList>(10);
+	    for (int i=0; i<arr.length; i++){
+		if (amtDigits>m){
+		    m=amtDigits;
+		}
+	        buckets.set(arr[i]%10^n,arr[i]);
+	    }
+	    for (int i=0; i<10; i++){
+		for (int j=0; j<buckets.get(i).size(); j++){
+		    arr[j+1]=buckets.get(i).get(j);
+		}
+	    }
+	    n++;
+	}while (n<m);
     }
     public static void bubble(int[] arr){
 	boolean swapped=true;
