@@ -13,19 +13,26 @@ public class Sorts{
 	a[k]=t;
     }
     public static void radix(int[] arr){
-	int n=0;
-	int m=0;
+	int n=0, m=0;
+	ArrayList<ArrayList<Integer>> buckets = new ArrayList<ArrayList<Integer>>();
 	do {
-	    ArrayList<ArrayList> buckets = new ArrayList<ArrayList>(10);
-	    for (int i=0; i<arr.length; i++){
-		if (amtDigits>m){
-		    m=amtDigits;
-		}
-	        buckets.set(arr[i]%10^n,arr[i]);
+	    buckets.clear();
+	    for (int i=0; i<10; i++){
+		buckets.add(new ArrayList<Integer>());
 	    }
+	    for (int i=0; i<arr.length; i++){
+		if (n==0){
+		    int amtDigits=(int)Math.log10(Math.abs(arr[i]))+1;
+		    if (amtDigits>m){
+			m=amtDigits;
+		    }
+		}
+		buckets.get((int)(arr[i]/Math.pow(10.0,n))%10).add(arr[i]);
+	    }
+	    int k=0;
 	    for (int i=0; i<10; i++){
 		for (int j=0; j<buckets.get(i).size(); j++){
-		    arr[j+1]=buckets.get(i).get(j);
+		    arr[k++]=buckets.get(i).get(j);
 		}
 	    }
 	    n++;
@@ -101,12 +108,65 @@ public class Sorts{
     }
     public static void main(String[]args){
 	int[] a = new int[100000];
+	int[] rx = new int[100000];
+	int[] bu = new int[100000];
+	int[] db = new int[100000];
+	int[] in = new int[100000];
+	int[] se = new int[100000];
+	int[] as = new int[100000];
 	Random r = new Random(11);
+	long start, end;
 	for (int i=0; i<100000; i++){
-	    a[i]=r.nextInt(100000);
+	    a[i]=r.nextInt(Integer.MAX_VALUE);
 	}
-	//System.out.println(Arrays.toString(a));
-	if (args.length==1){
+	System.arraycopy(a, 0, rx, 0, a.length);
+	start = System.currentTimeMillis();
+	radix(rx);
+	end = System.currentTimeMillis();
+	System.out.println("radix");
+	System.out.println(end-start);
+
+	System.arraycopy(a, 0, bu, 0, a.length);
+	start = System.currentTimeMillis();
+	Sorts.bubble(bu);
+	end = System.currentTimeMillis();
+	System.out.println("bubble");
+	System.out.println(end-start);
+
+	System.arraycopy(a, 0, db, 0, a.length);
+	start = System.currentTimeMillis();
+	Sorts.dubbleBubble(db);
+	end = System.currentTimeMillis();
+	System.out.println("dubble bubble");
+	System.out.println(end-start);
+
+	System.arraycopy(a, 0, in, 0, a.length);
+	start = System.currentTimeMillis();
+	Sorts.insertion(in);
+	end = System.currentTimeMillis();
+	System.out.println("insertion");
+	System.out.println(end-start);
+	
+	System.arraycopy(a, 0, se, 0, a.length);
+	start = System.currentTimeMillis();
+	Sorts.selection(se);
+	end = System.currentTimeMillis();
+	System.out.println("selection");
+	System.out.println(end-start);
+	
+	System.arraycopy(a, 0, as, 0, a.length);
+	start = System.currentTimeMillis();
+	Arrays.sort(as);
+	end = System.currentTimeMillis();
+	System.out.println("Arrays.sort");
+	System.out.println(end-start);
+
+	System.out.println(Arrays.equals(rx,as));
+	System.out.println(Arrays.equals(bu,as));
+	System.out.println(Arrays.equals(db,as));
+	System.out.println(Arrays.equals(in,as));
+	System.out.println(Arrays.equals(se,as));
+	/*if (args.length==1){
 	    bubble(a);
 	}
 	if (args.length==2){
@@ -123,10 +183,10 @@ public class Sorts{
 	}
 	//System.out.println(Arrays.toString(a));
 	if (args.length==6){
-	    int[] b = {6,0,5,3,4,7,2,1};
+	    int[] b = {601,10,57,13,4,76,2,1,2005};
 	    System.out.println(Arrays.toString(b));
-	    dubbleBubble(b);
+	    radix(b);
 	    System.out.println(Arrays.toString(b));	
-	}
+	    }*/
     }
 }
